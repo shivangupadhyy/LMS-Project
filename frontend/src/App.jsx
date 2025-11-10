@@ -26,7 +26,7 @@ function App() {
          <Route path="/educator" element={<Dasborad/>}/>
          <Route path="/add-course" element={<AddCourse/>}/>
          <Route path="/my-course" element= {<MyCourses/>}/>
-         <Route path="student-enrolled" element={<StudentEnrolled/>}/>
+         <Route path="/student-enrolled" element={<StudentEnrolled/>}/>
     </Routes>
   </div>
  )
