@@ -1,16 +1,52 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# LMS Project — Frontend
 
-Currently, two official plugins are available:
+This repository contains the frontend for a small Learning Management System (LMS) built with React and Vite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Key features
+- Student pages: browse courses, view course details, search, and a video player.
+- Educator pages: dashboard, add course, view my courses, and view enrolled students (nested routes).
+- Tailwind CSS for styling, Clerk scaffold for auth, and small UI components (CourseCard, SearchBar, Hero, Rating, etc.).
 
-## React Compiler
+Tech stack
+- React + Vite
+- Tailwind CSS
+- React Router (nested routes)
+- Clerk (auth integration scaffold)
+- Quill (rich text), react-youtube (video), rc-progress (progress UI)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Quick start
+1. Open a terminal and go to the frontend folder:
 
-## Expanding the ESLint configuration
+```powershell
+cd "d:\LMS Project\frontend"
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Open the URL printed by Vite (usually http://localhost:5173).
+
+Env / setup
+- The app expects a Clerk publishable key in an environment variable `VITE_CLERK_PUBLISHABLE_KEY` (used in `src/main.jsx`). Add it to a `.env` file in the `frontend` folder if you use Clerk locally.
+
+Project structure (important files)
+- `src/main.jsx` — app bootstrap: `BrowserRouter`, `ClerkProvider`, `AppContextProvider`.
+- `src/App.jsx` — route definitions (student routes + nested `/educator` routes).
+- `src/context/AppContext.jsx` — global context provider scaffold.
+- `src/index.css` — Tailwind directives + global font.
+- `tailwind.config.js` — Tailwind configuration (custom font sizes defined here).
+- `src/components/` — reusable UI components (Hero, SearchBar, CourseCard, Rating, etc.).
+- `src/pages/` — student and educator pages.
+
+Notes & tips
+- If you update `tailwind.config.js`, restart the Vite dev server so Tailwind rebuilds the CSS.
+- `AppContext.jsx` previously had a recursive render issue — it should return `<AppContext.Provider value={...}>{children}</AppContext.Provider>`.
+- To wire the app to a backend, add API calls in the page components (CourseList, CourseDetails, AddCourse, etc.).
+
+Next recommended steps
+- Wire a backend API to fetch/store courses and enrollments.
+- Add validation for `AddCourse` and error handling for network calls.
+- Add tests for critical components.
+
+License & attribution
+Add a license file if you plan to publish this project.
