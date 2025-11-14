@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AppContext } from '../../context/AppContext'
 import Loading from '../../components/student/Loading'
+import { assets } from '../../assets/assets'
 
 const CourseDetails = () => {
   const {id} = useParams()
 
   const [courseData, setCourseData] = useState(null)
 
-  const {allCourses} = useContext(AppContext)
+  const {allCourses, calculateRating} = useContext(AppContext)
 
   const fetchCourseData = async ()=>{
     if (!allCourses || allCourses.length === 0) {
@@ -40,7 +41,21 @@ const CourseDetails = () => {
         {/* left section */}
         <div className='max-w-xl z-10 text-gray-500'>
           <h1 className='md:text-course-details-heading-large text-course-details-heading-heading-small font-semibold text-gray-800'>{courseData.courseTitle}</h1>
-          <p dangerouslySetInnerHTML={{__html: courseData.courseDescription.slice(0,200)}}></p>
+          <p className='pt-4 md:text-base text-sm' dangerouslySetInnerHTML={{__html: courseData.courseDescription.slice(0,200)}}></p>
+
+          <div className='flex items-center space-x-2 pt-3 pb-1 text-sm '>
+                    <p>{calculateRating(courseData).toFixed(1)}</p>
+                    <div className='flex'>
+                      {[...Array(5)].map((_,i)=>(<img key={i} src={i < Math.floor(calculateRating(courseData)) ? assets.star : assets.star_blank} alt='' 
+                      className='w-3.5 h-3.5'/>
+                    ))}
+                    </div>
+                    <p className='text-blue-600'>({courseData.courseRatings?.length || 0}  {courseData.courseRatings.length > 1 ? 'ratings' : 'rating'})</p>
+
+                    <p>{courseData.enrolledStudents.length} {courseData.enrolledStudents.length > 1 ? 'students' : 'student'}</p>
+                  </div>
+
+                  <p className='text-sm'>Course by <span className='text-blue-600 underline'>Shivang Upadhyay</span></p>
         </div>
 
         {/* right section */}
