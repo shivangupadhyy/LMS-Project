@@ -108,14 +108,16 @@ const CourseDetails = () => {
         </div>
 
         {/* right section */}
-        <div className='max-w-course-card z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]' >
-          <img src={courseData.courseThumbnail} alt="" />
-          <div className='pt-5'>
-            <div>
+        <div className='w-full sm:w-auto max-w-course-card z-10 shadow-custom-card rounded-lg overflow-hidden bg-white sticky top-20' >
+          <div className='border-2 border-gray-200 rounded-lg overflow-hidden m-4 shadow-md'>
+            <img className='w-full h-auto max-h-64 object-cover' src={courseData.courseThumbnail} alt="" />
+            <div className='bg-gray-50 px-4 py-3 flex items-center gap-2 border-t border-gray-200'>
               <img className='w-3.5' src={assets.time_left_clock_icon} alt="time left clock icon" />
-              <p className='text-red-500'><span  className='font-medium'>5 days</span> left at this price!</p>
+              <p className='text-red-500 text-sm'><span className='font-medium'>5 days</span> left at this price!</p>
             </div>
+            <div><p>4:24</p></div>
           </div>
+          
         </div>
       </div>
     </div>
