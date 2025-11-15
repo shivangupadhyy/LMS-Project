@@ -50,7 +50,7 @@ const CourseDetails = () => {
       <div className='flex md:flex-row flex-col-reverse gap-10 relative items-start justify-between md:px-36 px-8 md:pt-32 pt-20 text-left'>
         {/* left section */}
         <div className='max-w-xl z-10 text-gray-500'>
-          <h1 className='md:text-course-details-heading-large text-course-details-heading-heading-small font-semibold text-gray-800'>{courseData.courseTitle}</h1>
+          <h1 className='md:text-course-details-heading-large text-course-details-heading-small font-semibold text-gray-800'>{courseData.courseTitle}</h1>
           <p className='pt-4 md:text-base text-sm' dangerouslySetInnerHTML={{__html: courseData.courseDescription.slice(0,200)}}></p>
 
           <div className='flex items-center space-x-2 pt-3 pb-1 text-sm '>
@@ -108,8 +108,14 @@ const CourseDetails = () => {
         </div>
 
         {/* right section */}
-        <div>
-          {/* render right column details using courseData */}
+        <div className='max-w-course-card z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]' >
+          <img src={courseData.courseThumbnail} alt="" />
+          <div className='pt-5'>
+            <div>
+              <img className='w-3.5' src={assets.time_left_clock_icon} alt="time left clock icon" />
+              <p className='text-red-500'><span  className='font-medium'>5 days</span> left at this price!</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
